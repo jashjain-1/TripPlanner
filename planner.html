@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RouteWise | Plan Trip</title>
+
+    <link rel="stylesheet" href="css/planner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <i class="fa-solid fa-route"></i>
+        <h2>RouteWise</h2>
+    </div>
+
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="planner.html" class="active">Plan Trip</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="app-layout">
+    <!-- Left Panel: Planner Controls, Info, Summary, Fuel & History -->
+    <aside class="left-panel">
+        <section class="planner">
+            <div class="panel-header">
+                <h1><i class="fa-solid fa-compass"></i> Plan Journey</h1>
+                <p id="clock"></p>
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="start"
+                    placeholder="Enter Starting Location"
+                    autocomplete="off"
+                    required>
+
+                <input
+                    type="text"
+                    id="end"
+                    placeholder="Enter Destination"
+                    autocomplete="off"
+                    required>
+
+                <button id="routeBtn">
+                    <i class="fa-solid fa-route"></i>
+                    Show Route
+                </button>
+            </div>
+
+            <p id="loading">Ready</p>
+        </section>
+
+        <section class="info-section">
+            <div class="info-card">
+                <i class="fa-solid fa-road"></i>
+                <h3>Distance</h3>
+                <p id="distance">--</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-clock"></i>
+                <h3>Travel Time</h3>
+                <p id="duration">--</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-cloud-sun"></i>
+                <h3>Weather</h3>
+                <p id="weather">
+                    Start : --<br>
+                    Destination : --
+                </p>
+            </div>
+        </section>
+
+        <section class="summary">
+            <h2>Trip Summary</h2>
+            <p><strong>From:</strong> <span id="fromPlace">--</span></p>
+            <p><strong>To:</strong> <span id="toPlace">--</span></p>
+            <p><strong>Travel Tip:</strong> <span id="tip">--</span></p>
+        </section>
+
+        <section class="fuel">
+            <h2>Fuel Cost Calculator</h2>
+            <div class="search-box fuel-inputs">
+                <input
+                    type="number"
+                    id="mileage"
+                    placeholder="Mileage (km/L)"
+                    min="1">
+
+                <input
+                    type="number"
+                    id="fuelPrice"
+                    placeholder="Fuel Price (₹/L)"
+                    min="1">
+
+                <button id="fuelBtn">
+                    Calculate
+                </button>
+            </div>
+
+            <p id="fuelResult">
+                Fuel Needed : --<br>
+                Estimated Cost : --
+            </p>
+        </section>
+
+        <section class="history">
+            <h2>Recent Trips</h2>
+            <ul id="historyList">
+                <li>No Trips Yet</li>
+            </ul>
+        </section>
+
+        <section class="buttons">
+            <button id="clearBtn">Clear Route</button>
+            <button id="resetBtn">Reset</button>
+            <button id="printBtn">Print</button>
+        </section>
+    </aside>
+
+    <!-- Center Panel: Interactive Map -->
+    <main class="map-section">
+        <div class="map-header">
+            <h2><i class="fa-solid fa-map-location-dot"></i> Route Map</h2>
+        </div>
+        <div id="map"></div>
+    </main>
+
+    <!-- Right Panel: Nearby Places -->
+    <aside class="right-panel">
+        <section class="places">
+            <h2><i class="fa-solid fa-location-crosshairs"></i> Nearby Places</h2>
+
+            <div class="place-grid">
+                <div class="place-card">
+                    <i class="fa-solid fa-hotel"></i>
+                    <h3>Hotels (<span id="hotelCount">0</span>)</h3>
+                    <ul id="hotelList">
+                        <li>No Data</li>
+                    </ul>
+                </div>
+
+                <div class="place-card">
+                    <i class="fa-solid fa-utensils"></i>
+                    <h3>Restaurants (<span id="restaurantCount">0</span>)</h3>
+                    <ul id="restaurantList">
+                        <li>No Data</li>
+                    </ul>
+                </div>
+
+                <div class="place-card">
+                    <i class="fa-solid fa-gas-pump"></i>
+                    <h3>Petrol Pumps (<span id="petrolCount">0</span>)</h3>
+                    <ul id="petrolList">
+                        <li>No Data</li>
+                    </ul>
+                </div>
+
+                <div class="place-card">
+                    <i class="fa-solid fa-charging-station"></i>
+                    <h3>EV Charging (<span id="evCount">0</span>)</h3>
+                    <ul id="evList">
+                        <li>No Data</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </aside>
+</div>
+
+<footer>
+    <p>Made by Karan and Jash</p>
+</footer>
+
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script defer src="js/planner.js"></script>
+
+</body>
+</html>
