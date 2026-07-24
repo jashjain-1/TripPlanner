@@ -133,10 +133,10 @@ async function fetchDestinationWeather(lat, lon) {
 }
 
 function getWeatherCondition(code) {
-    if (code === 0) return 'Clear Sky ☀️';
-    if (code <= 3) return 'Partly Cloudy ⛅';
-    if (code <= 48) return 'Foggy 🌫️';
-    if (code <= 82) return 'Rainy 🌧️';
+    if (code === 0) return 'Clear Sky ';
+    if (code <= 3) return 'Partly Cloudy ';
+    if (code <= 48) return 'Foggy ';
+    if (code <= 82) return 'Rainy ';
     return 'Stormy 🌩️';
 }
 
