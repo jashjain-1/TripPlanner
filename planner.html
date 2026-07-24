@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RouteWise | Plan Trip</title>
+<link rel="stylesheet" href="planner.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+<nav class="navbar">
+<div class="logo">
+<i class="fa-solid fa-route"></i>
+<h2>RouteWise</h2>
+</div>
+<ul>
+<li><a href="home.html">Home</a></li>
+<li><a href="planner.html" class="active">Plan Trip</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+<div class="planner-container">
+<aside class="left-panel">
+<section class="card planner-card">
+<div class="card-header">
+<h2><i class="fa-solid fa-compass"></i> Trip Planner</h2>
+<span id="clock"></span>
+</div>
+<form id="tripForm" onsubmit="return false;">
+<div class="input-group">
+<i class="fa-solid fa-circle-dot start-icon"></i>
+<input type="text" id="start" placeholder="Starting Location" required autocomplete="off">
+</div>
+<div class="input-group">
+<i class="fa-solid fa-location-dot end-icon"></i>
+<input type="text" id="end" placeholder="Destination Location" required autocomplete="off">
+</div>
+<div class="input-group">
+<i class="fa-solid fa-car-side"></i>
+<select id="vehicle">
+<option value="petrol">Petrol Car (15 km/L)</option>
+<option value="diesel">Diesel Car (18 km/L)</option>
+<option value="bike">Motorbike (45 km/L)</option>
+<option value="ev">Electric Vehicle (6 km/kWh)</option>
+</select>
+</div>
+<div class="form-actions">
+<button type="submit" id="routeBtn"><i class="fa-solid fa-calculator"></i> Plan Trip</button>
+<button type="button" id="resetBtn"><i class="fa-solid fa-rotate"></i> Reset</button>
+</div>
+</form>
+<p id="loading"></p>
+</section>
+
+<section class="card summary-card">
+<h2><i class="fa-solid fa-chart-simple"></i> Trip Summary</h2>
+<div class="metrics-grid">
+<div class="metric-box">
+<i class="fa-solid fa-road"></i>
+<span>Distance</span>
+<strong id="distance">--</strong>
+</div>
+<div class="metric-box">
+<i class="fa-solid fa-clock"></i>
+<span>Travel Time</span>
+<strong id="duration">--</strong>
+</div>
+<div class="metric-box">
+<i class="fa-solid fa-gas-pump"></i>
+<span>Fuel Cost</span>
+<strong id="fuelCost">--</strong>
+</div>
+<div class="metric-box">
+<i class="fa-solid fa-gauge-high"></i>
+<span>Avg Speed</span>
+<strong id="avgSpeed">--</strong>
+</div>
+</div>
+<div id="gmapsContainer" class="gmaps-box hidden">
+<a id="gmapsBtn" href="#" target="_blank" class="gmaps-link">
+<i class="fa-map-marked-alt fa-solid"></i> Open Navigation in Google Maps
+</a>
+</div>
+</section>
+
+<section class="card history-card">
+<div class="card-header">
+<h2><i class="fa-solid fa-clock-rotate-left"></i> Trip History</h2>
+<button id="clearHistoryBtn" class="text-btn">Clear All</button>
+</div>
+<ul id="historyList" class="history-list">
+<li class="empty-msg">No recent trips logged</li>
+</ul>
+</section>
+</aside>
+
+<main class="right-panel">
+<section class="card weather-card">
+<h2><i class="fa-solid fa-cloud-sun"></i> Destination Weather</h2>
+<div id="weatherInfo" class="weather-info">
+<div class="weather-placeholder">Enter trip details to check live weather</div>
+</div>
+</section>
+
+<section class="card places-card">
+<h2><i class="fa-solid fa-location-crosshairs"></i> Nearby Destination Amenities (Max 5)</h2>
+<div class="places-grid">
+<div class="place-box">
+<h3><i class="fa-solid fa-hotel"></i> Hotels (<span id="hotelCount">0</span>)</h3>
+<ul id="hotelList"><li>--</li></ul>
+</div>
+<div class="place-box">
+<h3><i class="fa-solid fa-utensils"></i> Restaurants (<span id="restaurantCount">0</span>)</h3>
+<ul id="restaurantList"><li>--</li></ul>
+</div>
+<div class="place-box">
+<h3><i class="fa-solid fa-gas-pump"></i> Petrol Pumps (<span id="petrolCount">0</span>)</h3>
+<ul id="petrolList"><li>--</li></ul>
+</div>
+<div class="place-box">
+<h3><i class="fa-solid fa-charging-station"></i> EV Charging (<span id="evCount">0</span>)</h3>
+<ul id="evList"><li>--</li></ul>
+</div>
+</div>
+</section>
+</main>
+</div>
+<footer>
+<p>RouteWise &bull; SAKEC Semester III Web Technology Project &bull; Karan & Jash</p>
+</footer>
+<script src="planner.js"></script>
+</body>
+</html>

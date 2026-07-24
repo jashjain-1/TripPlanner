@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | RouteWise</title>
+<link rel="stylesheet" href="contact.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+<nav class="navbar">
+<div class="logo">
+<i class="fa-solid fa-route"></i>
+<h2>RouteWise</h2>
+</div>
+<ul>
+<li><a href="home.html">Home</a></li>
+<li><a href="planner.html">Plan Trip</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html" class="active">Contact</a></li>
+</ul>
+</nav>
+
+<section class="contact">
+<h1>Contact Us</h1>
+<p>Have questions or feedback? Send us a message below.</p>
+<form id="contactForm">
+<input type="text" id="contactName" placeholder="Your Name" required>
+<input type="email" id="contactEmail" placeholder="Your Email Address" required>
+<textarea id="contactMessage" rows="5" placeholder="Your Message" required></textarea>
+<button type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+</form>
+<p id="contactFeedback" class="feedback-msg"></p>
+</section>
+
+<section class="info">
+<div class="card">
+<i class="fa-solid fa-location-dot"></i>
+<h3>Location</h3>
+<p>SAKEC, Chembur, Mumbai</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-envelope"></i>
+<h3>Email</h3>
+<p>routewise@sakec.ac.in</p>
+</div>
+<div class="card">
+<i class="fa-solid fa-graduation-cap"></i>
+<h3>Department</h3>
+<p>Computer Engineering (Sem III)</p>
+</div>
+</section>
+
+<footer>
+<p>RouteWise &bull; SAKEC Semester III Web Technology Project &bull; Karan & Jash</p>
+</footer>
+<script src="contact.js"></script>
+</body>
+</html>
