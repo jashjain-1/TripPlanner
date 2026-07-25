@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RouteWise | Plan Trip</title>
-<link rel="stylesheet" href="planner.css">
+<link rel="stylesheet" href="css/planner.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 <h2>RouteWise</h2>
 </div>
 <ul>
-<li><a href="index.html">Home</a></li>
+<li><a href="home.html">Home</a></li>
 <li><a href="planner.html" class="active">Plan Trip</a></li>
 <li><a href="about.html">About</a></li>
 <li><a href="contact.html">Contact</a></li>
@@ -42,7 +42,7 @@
 <option value="petrol">Petrol Car (15 km/L)</option>
 <option value="diesel">Diesel Car (18 km/L)</option>
 <option value="bike">Motorbike (45 km/L)</option>
-<option value="ev">CNG  Vehicle (34 km/kg)</option>
+<option value="cng">CNG Vehicle (22 km/kg)</option>
 </select>
 </div>
 <div class="form-actions">
@@ -119,8 +119,21 @@
 <ul id="petrolList"><li>--</li></ul>
 </div>
 <div class="place-box">
-<h3><i class="fa-solid fa-charging-station"></i> CNG StATION(<span id="evCount">0</span>)</h3>
+<h3><i class="fa-solid fa-fire-flame-simple"></i> CNG Stations (<span id="cngCount">0</span>)</h3>
 <ul id="cngList"><li>--</li></ul>
+</div>
+</div>
+</section>
+
+<section class="card ai-review-card">
+<div class="card-header">
+<h2><i class="fa-solid fa-brain"></i> AI Restaurant Review & Rating Graph</h2>
+<span id="aiActiveRestaurant" class="ai-restaurant-tag"><i class="fa-solid fa-utensils"></i> Select a restaurant above</span>
+</div>
+<div id="aiReviewContainer">
+<div class="ai-placeholder">
+<i class="fa-solid fa-chart-bar"></i>
+<p>Plan a trip or click on any displayed restaurant above to generate real-time AI customer reviews and rating graph breakdown.</p>
 </div>
 </div>
 </section>
@@ -129,6 +142,6 @@
 <footer>
 <p>RouteWise &bull; SAKEC Semester III Web Technology Project &bull; Karan & Jash</p>
 </footer>
-<script src="planner.js"></script>
+<script src="js/planner.js"></script>
 </body>
 </html>
