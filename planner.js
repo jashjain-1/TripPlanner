@@ -154,10 +154,10 @@ async function fetchDestinationWeather(lat, lon) {
 }
 
 function getWeatherCondition(code) {
-    if (code === 0) return 'Clear Sky ☀️';
-    if (code <= 3) return 'Partly Cloudy ⛅';
-    if (code <= 48) return 'Foggy 🌫️';
-    if (code <= 82) return 'Rainy 🌧️';
+    if (code === 0) return 'Clear Sky ';
+    if (code <= 3) return 'Partly Cloudy ';
+    if (code <= 48) return 'Foggy ';
+    if (code <= 82) return 'Rainy ';
     return 'Stormy 🌩️';
 }
 
@@ -225,7 +225,6 @@ async function fetchNearbyPlaces(lat, lon, locationName) {
         }
     });
 
-    // Render Restaurants as Clickable for AI Review Graph
     const restItems = (categorized.restaurant || []).slice(0, 5);
     if (counts.restaurant) counts.restaurant.textContent = restItems.length;
     if (lists.restaurant) {
@@ -239,8 +238,7 @@ async function fetchNearbyPlaces(lat, lon, locationName) {
                     <small>~${item.dist} km <i class="fa-solid fa-chevron-right"></i></small>
                 </li>
             `).join('');
-
-            // Automatically trigger AI review for the top restaurant
+ant
             loadAiRestaurantReview(restItems[0].name, locationName);
         }
     }
@@ -403,7 +401,6 @@ function drawVanillaJsReviewGraph(canvasId, ratings, sentiment) {
         ctx.font = '500 12px "Poppins", sans-serif';
     });
 
-    // Sentiment Mini Bar at Bottom
     const bottomY = startY + items.length * gapY + 10;
     if (bottomY < height - 15) {
         ctx.fillStyle = '#64748b';
