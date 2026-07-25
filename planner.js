@@ -2,7 +2,7 @@ const VEHICLES = {
     petrol: { name: 'Petrol Car', mileage: 15, rate: 105, unit: 'L' },
     diesel: { name: 'Diesel Car', mileage: 18, rate: 92, unit: 'L' },
     bike: { name: 'Motorbike', mileage: 45, rate: 105, unit: 'L' },
-    ev: { name: 'Electric Vehicle', mileage: 6, rate: 10, unit: 'kWh' }
+    cng: { name: 'CNG Car', mileage: 25, rate: 80, unit: 'kg' } // Replaced EV with CNG
 };
 
 function updateClock() {
@@ -145,27 +145,27 @@ async function fetchNearbyPlaces(lat, lon) {
         node(around:5000,${lat},${lon})["tourism"~"hotel|guest_house|motel"];
         node(around:5000,${lat},${lon})["amenity"~"restaurant|fast_food|cafe"];
         node(around:5000,${lat},${lon})["amenity"="fuel"];
-        node(around:5000,${lat},${lon})["amenity"="charging_station"];
-    );out center 25;`;
+        node(around:5000,${lat},${lon})["fuel:cng"="yes"];
+    );out center 25;`; // Modified charging_station query to look for CNG stations
 
     const lists = {
         hotel: document.getElementById('hotelList'),
         restaurant: document.getElementById('restaurantList'),
         petrol: document.getElementById('petrolList'),
-        ev: document.getElementById('evList')
+        cng: document.getElementById('cngList') // Updated from ev
     };
     const counts = {
         hotel: document.getElementById('hotelCount'),
         restaurant: document.getElementById('restaurantCount'),
         petrol: document.getElementById('petrolCount'),
-        ev: document.getElementById('evCount')
+        cng: document.getElementById('cngCount') // Updated from ev
     };
 
     try {
         const res = await fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`);
         if (!res.ok) throw new Error('Overpass error');
         const data = await res.json();
-        const categorized = { hotel: [], restaurant: [], petrol: [], ev: [] };
+        const categorized = { hotel: [], restaurant: [], petrol: [], cng: [] };
 
         (data.elements || []).forEach(el => {
             const tags = el.tags || {};
@@ -175,8 +175,8 @@ async function fetchNearbyPlaces(lat, lon) {
             const dist = placeLat ? haversineDistance(lat, lon, placeLat, placeLon).toFixed(1) : '1.2';
 
             if (tags.tourism) categorized.hotel.push({ name, dist });
+            else if (tags['fuel:cng'] === 'yes') categorized.cng.push({ name, dist }); // Checked before amenity='fuel' so CNG stations aren't mistaken for pure petrol stations
             else if (tags.amenity === 'fuel') categorized.petrol.push({ name, dist });
-            else if (tags.amenity === 'charging_station') categorized.ev.push({ name, dist });
             else if (tags.amenity) categorized.restaurant.push({ name, dist });
         });
 
@@ -268,7 +268,7 @@ function handleReset() {
     document.getElementById('loading').textContent = '';
     document.getElementById('gmapsContainer')?.classList.add('hidden');
     document.getElementById('weatherInfo').innerHTML = `<div class="weather-placeholder">Enter trip details to check live weather</div>`;
-    ['hotel', 'restaurant', 'petrol', 'ev'].forEach(key => {
+    ['hotel', 'restaurant', 'petrol', 'cng'].forEach(key => { // Updated from ev to cng
         document.getElementById(`${key}Count`).textContent = '0';
         document.getElementById(`${key}List`).innerHTML = '<li>--</li>';
     });
